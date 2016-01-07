@@ -1,0 +1,49 @@
+<?php $post = $this->getPost() ?>
+<table class="no_border_table" style="width:952px;" cellpadding="0" cellspacing="0">
+  <tbody>
+<tr>
+<td class="table_header"><span class="table_span">
+<?php echo $this->escapeHtml($post->getPostDate('d.m.y')) ?></span></td>
+</tr>
+  </tbody>
+</table>
+<div class="post-list-item">
+	<?php echo $this->getBeforePostContentHtml() ?>
+	<div class="post-entry entry<?php if ($post->getFeaturedImage): ?> post-entry-with-image<?php endif; ?>">
+		<?php if ($post->isViewableForVisitor()): ?>
+			<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+				<div id="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+					<a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><img src="<?php echo $featuredImage->getLargeImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" style="width: 93%;"/></a>
+				</div>
+			<?php endif; ?>
+			<div style="padding: 10px 10px 10px 10px;width: 932px;background: black; text-align: initial; ">
+			<strong><a style="color: white; text-transform: uppercase; font-size: x-large;" href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a></strong>
+			<br>
+			<?php if ($tags = $post->getTags()): ?>
+				<?php foreach ($tags as $tag): ?>
+					<a class="blog-tag" href="<?php echo $tag->getUrl() ?>"><?php echo $this->htmlEscape($tag->getName()) ?></a>
+				<?php endforeach; ?>
+            <?php endif; ?>
+            <br><span class="post-date-long"><?php echo $this->escapeHtml($post->getPostDate('l, F j, Y - g:ia')) ?></span><br>
+            <ul class="social-links" style="display: -webkit-box;">
+            	<li><a class="footer-links pinterest-viral" href="javascript:selectPinImage('', ' - https://www.pursuitbicycles.com', true, document.getElementById('<?php echo $this->escapeHtml($post->getPostTitle()) ?>'))" target="_blank"></a></li>
+				<li><a class="footer-links facebook-viral" href="javascript:onFaceBookShare('<?php echo $this->escapeHtml($post->getPostTitle()) ?>',
+				'<?php echo strip_tags($post->getPostContent()) ?>',
+				'<?php echo $post->getPermalink() ?>',
+				'<?php echo $featuredImage->getLargeImage() ?>',
+				'<?php echo $post->getPermalink() ?>')" target="_blank"></a></li>
+				<li><a class="footer-links twitter-viral" href="javascript:onTwitterShare('<?php echo $this->escapeHtml($post->getPostTitle()) ?>',
+				'<?php echo $post->getPermalink() ?>')"></a></li>
+			</ul>
+            <br>
+			<?php if ($this->displayExcerptInFeed() || $post->hasMoreTag()): ?>
+				<?php echo $post->getPostExcerpt() ?>
+			<?php else: ?>
+				<?php echo $post->getPostContent() ?>
+			<?php endif; ?>
+			</div>
+		<?php else: ?>
+			<?php echo $this->getPasswordProtectHtml($post) ?>
+		<?php endif; ?>
+	</div>
+</div>

@@ -1,0 +1,63 @@
+<?php if($this->getItems()->getSize()): ?>
+<div class="block block-related">
+	<table style="width: 100%;">
+		<tbody>
+		<tr>
+			<td height="42px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="table_header"><span class="table_span"><?php echo $this->__('Related Products') ?></span></td>
+		</tr>
+		</tbody>
+	</table>
+    <div class="block-content">
+        <?php foreach($this->getItems() as $_item): ?>
+			<div class="product">
+				<a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(230) ?>" width="230" height="230" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+				<div class="product-details">
+					<p class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></p>
+					<?php echo $this->getPriceHtml($_item, true, '-related') ?>
+				</div>
+			</div>
+        <?php endforeach ?>
+        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    //]]>
+    </script>
+</div>
+<br><br>
+<?php endif ?>

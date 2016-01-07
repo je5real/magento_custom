@@ -1,0 +1,52 @@
+<div class="hidden" id="shop-by-category">
+	<script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+			var images = new Array()
+			function preload() {
+				for (i = 0; i < preload.arguments.length; i++) {
+					images[i] = new Image()
+					images[i].src = preload.arguments[i]
+				}
+			}
+			preload(
+				"../skin/frontend/default/pursuit/images/shop/shop_framesets_overlay.jpg",
+				"../skin/frontend/default/pursuit/images/shop/shop_completes_overlay.jpg",
+				"../skin/frontend/default/pursuit/images/shop/shop_components_overlay.jpg",
+				"../skin/frontend/default/pursuit/images/shop/shop_accessories_overlay.jpg"
+			)
+		//--><!]]>
+	</script>
+</div>
+<table class="table_info">
+	<tbody>
+	<tr>
+		<td colspan="2" class="table_header"><span class="table_span">Shop by Category</span></td>
+	</tr>
+	<tr>
+	  <td>
+      <a class="category completes" href="../shop/completes.html"><!--COMPLETES--></a>
+      <table width="476px">
+      	<tbody>
+      	<tr width="100%">
+      	  <td height="160">
+      	    <a class="category components" href="../shop/components.html"><!--COMPONENTS--></a>
+    	    </td>
+      	  </tr>
+      	</tbody>
+      </table>
+      </td>
+      <td>
+		<a class="category framesets" href="../shop/framesets.html"><!--FRAMESETS--></a>
+		<table width="476px">
+			<tbody>
+			<tr width="100%">
+			  <td height="160">
+				<a class="category accessories" href="../shop/accessories.html"><!--TOOLS--></a>
+			</td>
+			  </tr>
+			</tbody>
+		</table>
+		</td>
+	  </tr>
+	</tbody>
+</table>

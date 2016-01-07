@@ -1,0 +1,17 @@
+<?php $post = $this->getPost() ?>
+<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+	<div>
+		<a href="<?php echo $post->getPermalink() ?>" id="post-slider" class="block" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><img src="<?php echo $featuredImage->getThumbnailImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" style="width: 317px;"/></a>
+	</div>
+<?php endif; ?>
+<div style="
+         background-color: black;
+         height: 45px;
+         padding-left: 10px;
+         padding-top: 10px;
+     ">
+<strong style="
+            color: white;
+        "><?php echo $this->escapeHtml($post->getPostTitle()) ?></strong>
+<br><strong style="font-style: italic; "><?php echo $this->escapeHtml($post->getPostDate('d.m.y')) ?></strong> <span style="font-family: 'AvenirLTW02-35LightObli' !important; text-transform: none; color: #888888">/ <?php echo $this->escapeHtml($post->getPostDate('g:ia')) ?></span>
+</div>
