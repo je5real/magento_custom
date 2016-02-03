@@ -7,19 +7,19 @@ $link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $escaped_link = htmlspecialchars($link, ENT_QUOTES, 'UTF-8');
 
 $breadcrumb = str_replace(".html", "",$escaped_link);
-$breadcrumb = str_replace("//www.pursuitbicycles.com", "",$breadcrumb);
+$breadcrumb = str_replace("//ec2-52-91-138-229.compute-1.amazonaws.com", "",$breadcrumb);
 $breadcrumb = strtoupper($breadcrumb);
 
 $breadcrumbArray = split("/", $breadcrumb);
 array_splice($breadcrumbArray, 0, 1);
 
-$breadcrumbArray[0] = $breadcrumbArray[0] && strrpos($breadcrumbArray[0], "-") === false ? "/ "."<a class='white_red' href='https://www.pursuitbicycles.com/shop.html'>".$breadcrumbArray[0]."</a>" : "";
+$breadcrumbArray[0] = $breadcrumbArray[0] && strrpos($breadcrumbArray[0], "-") === false ? "/ "."<a class='white_red' href='http://ec2-52-91-138-229.compute-1.amazonaws.com/shop.html'>".$breadcrumbArray[0]."</a>" : "";
 $breadcrumbArray[1] = $breadcrumbArray[1] && strrpos($breadcrumbArray[1], "-") === false ? " / "."<a class='white_red' href='../".strtolower($breadcrumbArray[1]).".html'>".$breadcrumbArray[1]."</a>" : "";
 $breadcrumbArray[2] = $breadcrumbArray[2] && strrpos($breadcrumbArray[2], "-") === false ? " / "."<a class='white_red' href='../".strtolower($breadcrumbArray[2]).".html'>".$breadcrumbArray[2]."</a>" : "";
 $nameCrumb = " / ".$_helper->productAttribute($_product, $_product->getName(), 'name');
 $breadcrumb = $breadcrumbArray[0].$breadcrumbArray[1].$breadcrumbArray[2].$nameCrumb;
 if($breadcrumb == $nameCrumb) {
-	$breadcrumb = "/ "."<a class='white_red' href='https://www.pursuitbicycles.com/shop.html'>shop</a>".$nameCrumb;
+	$breadcrumb = "/ "."<a class='white_red' href='http://ec2-52-91-138-229.compute-1.amazonaws.com/shop.html'>shop</a>".$nameCrumb;
 }
 ?>
 <table class="no_border_table" style="width: 952px;">
@@ -65,7 +65,7 @@ if($breadcrumb == $nameCrumb) {
 			</span>
             <br><br>
             <ul class="social-links" style="display: -webkit-box;">
-				<li><a class="footer-links pinterest-viral" href="javascript:selectPinImage('', ' - https://www.pursuitbicycles.com', true, document.getElementById('product_images'))" target="_blank"></a></li>
+				<li><a class="footer-links pinterest-viral" href="javascript:selectPinImage('', ' - http://ec2-52-91-138-229.compute-1.amazonaws.com', true, document.getElementById('product_images'))" target="_blank"></a></li>
 				<li><a class="footer-links facebook-viral" href="javascript:onFaceBookShare('<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>',
 				' ',
 				'<?php echo $_product->getShortDescription(); ?>',

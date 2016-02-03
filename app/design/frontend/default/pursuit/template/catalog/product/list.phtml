@@ -3,7 +3,7 @@ $link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $escaped_link = htmlspecialchars($link, ENT_QUOTES, 'UTF-8');
 
 $breadcrumb = str_replace(".html", "",$escaped_link);
-$breadcrumb = str_replace("//www.pursuitbicycles.com", "",$breadcrumb);
+$breadcrumb = str_replace("//ec2-52-91-138-229.compute-1.amazonaws.com", "",$breadcrumb);
 $breadcrumb = strtoupper($breadcrumb);
 if(strrpos($breadcrumb, "/CATALOGSEARCH/RESULT/?Q=") === false) {
  	$breadcrumbArray = split("/", $breadcrumb);
@@ -11,7 +11,7 @@ if(strrpos($breadcrumb, "/CATALOGSEARCH/RESULT/?Q=") === false) {
     $bannerName = "banner_".strtolower($breadcrumbArray[1]);
     $bannerName = str_replace("-", "",$bannerName);
 
-    $breadcrumbArray[0] = "<a class='white_red' href='https://www.pursuitbicycles.com/shop.html'>".$breadcrumbArray[0]."</a>";
+    $breadcrumbArray[0] = "<a class='white_red' href='http://ec2-52-91-138-229.compute-1.amazonaws.com/shop.html'>".$breadcrumbArray[0]."</a>";
     $breadcrumbArray[1] = "<a class='white_red' href='../".strtolower($breadcrumbArray[1]).".html'>".$breadcrumbArray[1]."</a>";
     $breadcrumb = "/ ".$breadcrumbArray[0]." / ".$breadcrumbArray[1]." / ".$breadcrumbArray[2];
 
@@ -26,7 +26,7 @@ if(strrpos($breadcrumb, "/CATALOGSEARCH/RESULT/?Q=") === false) {
 }else {
 	$breadcrumb = str_replace("/CATALOGSEARCH/RESULT/?Q=", "",$breadcrumb);
 	$breadcrumbArray = split("&AMP;SORT=", $breadcrumb);
-	$breadcrumb = "/ <a class='white_red' href='https://www.pursuitbicycles.com/shop.html'>shop</a>"." / ".$breadcrumbArray[0];
+	$breadcrumb = "/ <a class='white_red' href='http://ec2-52-91-138-229.compute-1.amazonaws.com/shop.html'>shop</a>"." / ".$breadcrumbArray[0];
 }
 ?>
 <?php
@@ -99,7 +99,7 @@ if(strrpos($breadcrumb, "/CATALOGSEARCH/RESULT/?Q=") === false) {
 		if(substr_count($_SERVER['REQUEST_URI'], "/") > 2) {
 			$mainName = $this->getLayer()->getCurrentCategory()->getName();
 			if($mainName == "LIGHTSPEED_ROOT_CATEGORY") {
-				$mainName = str_replace("//www.pursuitbicycles.com/catalogsearch/result/?q=","",$escaped_link);
+				$mainName = str_replace("//ec2-52-91-138-229.compute-1.amazonaws.com/catalogsearch/result/?q=","",$escaped_link);
 				$_isSearch = true;
 			}
 			$mainName = str_replace(" ","+",$mainName);
